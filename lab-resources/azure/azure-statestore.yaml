@@ -1,0 +1,20 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: shopstate
+  namespace: default
+spec:
+  type: state.azure.blobstorage
+  version: v1
+  metadata:
+  - name: accountName
+    value: "daprworkshopstorage"
+  - name: containerName
+    value: "statestore"
+  - name: accountKey
+    secretKeyRef:
+      name: blob-secret
+      key:  blob-secret # account-key
+    
+auth:
+  secretStore: secretstore #kubernetes

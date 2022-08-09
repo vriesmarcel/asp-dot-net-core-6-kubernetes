@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  catalog:
+    image: ${DOCKER_REGISTRY-}catalog
+    build:
+      context: .
+      dockerfile: catalog/Dockerfile
+    networks:
+      - globoticket
+
+  frontend:
+    image: ${DOCKER_REGISTRY-}frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    networks:
+      - globoticket
+
+  ordering:
+    image: ${DOCKER_REGISTRY-}ordering
+    build:
+      context: .
+      dockerfile: ordering/Dockerfile
+    networks:
+      - globoticket
+
+networks:
+    globoticket:
