@@ -26,18 +26,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-      "publishAllPorts": true
-    },
-    "dapr-self-hosted": {
-      "commandName": "Executable",
-      "executablePath": "dapr",
-      "commandLineArgs": "run --app-id catalog --app-port 5016 --dapr-http-port 3501 dotnet run",
-      "workingDirectory": "$(ProjectDir)"
     }
   }
 }
