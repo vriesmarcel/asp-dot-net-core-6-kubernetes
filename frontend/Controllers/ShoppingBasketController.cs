@@ -30,9 +30,9 @@ public class ShoppingBasketController : Controller
         var lineViewModels = basketLines.Select(bl => new BasketLineViewModel
         {
             LineId = bl.BasketLineId,
-            EventId = bl.EventId,
-            EventName = bl.Event.Name,
-            Date = bl.Event.Date,
+            ConcertId = bl.ConcertId,
+            ConcertName = bl.Concert.Name,
+            Date = bl.Concert.Date,
             Price = bl.Price,
             Quantity = bl.TicketAmount
         }

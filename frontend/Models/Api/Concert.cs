@@ -1,7 +1,8 @@
-namespace GloboTicket.Catalog;
-public class Event
+﻿namespace GloboTicket.Frontend.Models.Api;
+
+public class Concert
 {
-    public Guid EventId { get; set; }
+    public Guid ConcertId { get; set; }
     public string Name { get; set; } = String.Empty;
     public int Price { get; set; }
     public string Artist { get; set; } = String.Empty;

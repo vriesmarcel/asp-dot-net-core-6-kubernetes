@@ -34,8 +34,8 @@ You will be able to access Zipkin traces on: `http://localhost:9412/zipkin/`
 
 ## Architecture Overview
 
-- The **frontend** microservice is a simple ASP.NET Core 6 website. It allows visitors to browse the catalog of events, and place an order for tickets
-- The **catalog** microservice provides the list of events that tickets can be purchased for. To keep this demo as simple as possible, the catalog microservice returns a hard-coded in-memory list. Created with `dotnet new webapi -o catalog --no-https` (no https because we're going to rely on dapr for securing communication between microservices). A dapr cron job calls a scheduled endpoint on this.
+- The **frontend** microservice is a simple ASP.NET Core 6 website. It allows visitors to browse the catalog of concerts, and place an order for tickets
+- The **catalog** microservice provides the list of concerts that tickets can be purchased for. To keep this demo as simple as possible, the catalog microservice returns a hard-coded in-memory list. Created with `dotnet new webapi -o catalog --no-https` (no https because we're going to rely on dapr for securing communication between microservices). A dapr cron job calls a scheduled endpoint on this.
 - The **ordering** microservice takes new orders. It receives the order via pub-sub messaging. It sends an email to thank the user for purchasing. A dapr output
 
 ## Deploying to Kubernetes (AKS) on Azure

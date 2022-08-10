@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IShoppingBasketService, InMemoryShoppingBasketService>();
-builder.Services.AddHttpClient<IEventCatalogService, EventCatalogService>(
+builder.Services.AddHttpClient<IConcertCatalogService, ConcertCatalogService>(
     (provider, client) =>{
-        client.BaseAddress = new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:EventCatalog:Uri"] ?? throw new InvalidOperationException("Missing config"));
+        client.BaseAddress = new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:ConcertCatalog:Uri"] ?? throw new InvalidOperationException("Missing config"));
     });
 
 builder.Services.AddHttpClient<IOrderSubmissionService, HttpOrderSubmissionService>(
@@ -39,6 +39,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=EventCatalog}/{action=Index}/{id?}");
+    pattern: "{controller=ConcertCatalog}/{action=Index}/{id?}");
 
 app.Run();

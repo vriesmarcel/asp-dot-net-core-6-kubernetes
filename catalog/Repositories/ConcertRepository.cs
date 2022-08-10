@@ -2,14 +2,14 @@ using Microsoft.Extensions.Options;
 
 namespace GloboTicket.Catalog.Repositories;
 
-public class EventRepository : IEventRepository
+public class ConcertRepository : IConcertRepository
 {
-    private List<Event> events = new List<Event>();
+    private List<Concert> concerts = new List<Concert>();
     private readonly IOptions<CatalogOptions> options;
-    private readonly ILogger<EventRepository> logger;
+    private readonly ILogger<ConcertRepository> logger;
 
-    public EventRepository(IOptions<CatalogOptions> options,
-        ILogger<EventRepository> logger)
+    public ConcertRepository(IOptions<CatalogOptions> options,
+        ILogger<ConcertRepository> logger)
     {
         this.options = options;
         this.logger = logger;
@@ -23,9 +23,9 @@ public class EventRepository : IEventRepository
         var nickSailorGuid = Guid.Parse("{CFB88E29-4744-48C0-94FA-B25B92DEA318}");
         var michaelJohnsonGuid = Guid.Parse("{CFB88E29-4744-48C0-94FA-B25B92DEA319}");
 
-        events.Add(new Event
+        concerts.Add(new Concert
         {
-            EventId = johnEgbertGuid,
+            ConcertId = johnEgbertGuid,
             Name = "John Egbert Live",
             Price = 65,
             Artist = "John Egbert",
@@ -34,9 +34,9 @@ public class EventRepository : IEventRepository
             ImageUrl = "/img/banjo.jpg",
         });
 
-        events.Add(new Event
+        concerts.Add(new Concert
         {
-            EventId = michaelJohnsonGuid,
+            ConcertId = michaelJohnsonGuid,
             Name = "The State of Affairs: Michael Live!",
             Price = 85,
             Artist = "Michael Johnson",
@@ -45,9 +45,9 @@ public class EventRepository : IEventRepository
             ImageUrl = "/img/michael.jpg",
         });
 
-        events.Add(new Event
+        concerts.Add(new Concert
         {
-            EventId = nickSailorGuid,
+            ConcertId = nickSailorGuid,
             Name = "To the Moon and Back",
             Price = 135,
             Artist = "Nick Sailor",
@@ -57,7 +57,7 @@ public class EventRepository : IEventRepository
         });
     }
 
-    public IEnumerable<Event> GetEvents()
+    public IEnumerable<Concert> GetConcerts()
     {
         try
         {
@@ -68,7 +68,7 @@ public class EventRepository : IEventRepository
         {
             logger.LogWarning(e, "Failed to fetch the connection string");
         }
-        return events;
+        return concerts;
     }
 
     private string GetConnectionString()
@@ -76,28 +76,28 @@ public class EventRepository : IEventRepository
         return options?.Value?.CatalogConnectionString ?? String.Empty;
     }
 
-    public Task<Event> GetEventById(Guid eventId)
+    public Task<Concert> GetConcertById(Guid concertId)
     {
-        var @event = events.FirstOrDefault(e => e.EventId == eventId);
-        if (@event == null)
+        var concert = concerts.FirstOrDefault(e => e.ConcertId == concertId);
+        if (concert == null)
         {
-            throw new InvalidOperationException("Event not found");
+            throw new InvalidOperationException("Concert not found");
         }
-        return Task.FromResult(@event);
+        return Task.FromResult(concert);
     }
 
     // Scheduled task calls this periodically to put one item on special offer
     public void UpdateSpecialOffer()
     {
         // reset all tickets to their default
-        events.Clear();
+        concerts.Clear();
         LoadSampleData();
 
         // Pick a random one to put on special offer
         var random = new Random();
-        var specialOfferEvent = events[random.Next(0, events.Count)];
+        var specialOfferConcert = concerts[random.Next(0, concerts.Count)];
         
         // 20 percent off
-        specialOfferEvent.Price = (int)(specialOfferEvent.Price * 0.8);
+        specialOfferConcert.Price = (int)(specialOfferConcert.Price * 0.8);
     }
 }

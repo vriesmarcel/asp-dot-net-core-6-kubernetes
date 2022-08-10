@@ -14,13 +14,13 @@ class InMemoryBasket
     public List<BasketLine> Lines { get; }
     public Guid UserId { get; }
 
-    public BasketLine Add(BasketLineForCreation line, Event @event)
+    public BasketLine Add(BasketLineForCreation line, Concert concert)
     {
         var basketLine = new BasketLine()
         {
-            EventId = line.EventId,
+            ConcertId = line.ConcertId,
             TicketAmount = line.TicketAmount,
-            Event = @event,
+            Concert = concert,
             BasketId = this.BasketId,
             BasketLineId = Guid.NewGuid(),
             Price = line.Price

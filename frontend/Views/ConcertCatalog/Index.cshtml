@@ -1,9 +1,9 @@
-﻿@model GloboTicket.Frontend.Models.View.EventListModel
+﻿@model GloboTicket.Frontend.Models.View.ConcertListModel
 
 <div class="row">
-    @if (Model!.Events.Count() == 0)
+    @if (Model!.Concerts.Count() == 0)
     {
-        <text>No events were found.</text>
+        <text>No concerts were found.</text>
     }
     else
     {
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @Html.DisplayFor(m => m.Events)
+                @Html.DisplayFor(m => m.Concerts)
             </tbody>
         </table>
     }

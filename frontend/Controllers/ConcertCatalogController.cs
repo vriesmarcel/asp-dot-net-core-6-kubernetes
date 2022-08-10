@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GloboTicket.Frontend.Controllers;
 
-public class EventCatalogController : Controller
+public class ConcertCatalogController : Controller
 {
-    private readonly IEventCatalogService eventCatalogService;
+    private readonly IConcertCatalogService concertCatalogService;
     private readonly IShoppingBasketService shoppingBasketService;
     private readonly Settings settings;
 
-    public EventCatalogController(IEventCatalogService eventCatalogService, IShoppingBasketService shoppingBasketService, Settings settings)
+    public ConcertCatalogController(IConcertCatalogService concertCatalogService, IShoppingBasketService shoppingBasketService, Settings settings)
     {
-        this.eventCatalogService = eventCatalogService;
+        this.concertCatalogService = concertCatalogService;
         this.shoppingBasketService = shoppingBasketService;
         this.settings = settings;
     }
@@ -26,24 +26,24 @@ public class EventCatalogController : Controller
         var currentBasketId = Request.Cookies.GetCurrentBasketId(settings);
 
         var getBasket = shoppingBasketService.GetBasket(currentBasketId);
-        var getEvents = eventCatalogService.GetAll();
+        var getConcerts = concertCatalogService.GetAll();
 
-        await Task.WhenAll(new Task[] { getBasket, getEvents });
+        await Task.WhenAll(new Task[] { getBasket, getConcerts });
 
         var numberOfItems = getBasket.Result.NumberOfItems;
 
         return View(
-            new EventListModel
+            new ConcertListModel
             {
-                Events = getEvents.Result,
+                Concerts = getConcerts.Result,
                 NumberOfItems = numberOfItems,
             }
         );
     }
 
-    public async Task<IActionResult> Detail(Guid eventId)
+    public async Task<IActionResult> Detail(Guid concertId)
     {
-        var ev = await eventCatalogService.GetEvent(eventId);
+        var ev = await concertCatalogService.GetConcert(concertId);
         return View(ev);
     }
 }

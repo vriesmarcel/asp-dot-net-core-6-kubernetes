@@ -9,16 +9,16 @@ namespace GloboTicket.Frontend.Services.ShoppingBasket;
 public class InMemoryShoppingBasketService : IShoppingBasketService
 {
     private readonly Dictionary<Guid, InMemoryBasket> baskets;
-    private readonly Dictionary<Guid, Event> eventsCache; // shopping basket lines need to get event date and name
+    private readonly Dictionary<Guid, Concert> concertsCache; // shopping basket lines need to get concert date and name
     private readonly Settings settings;
-    private readonly IEventCatalogService eventCatalogService;
+    private readonly IConcertCatalogService concertCatalogService;
 
-    public InMemoryShoppingBasketService(Settings settings, IEventCatalogService eventCatalogService)
+    public InMemoryShoppingBasketService(Settings settings, IConcertCatalogService concertCatalogService)
     {
         this.settings = settings;
-        this.eventCatalogService = eventCatalogService;
+        this.concertCatalogService = concertCatalogService;
         this.baskets = new Dictionary<Guid, InMemoryBasket>();
-        this.eventsCache = new Dictionary<Guid, Event>();
+        this.concertsCache = new Dictionary<Guid, Concert>();
     }
 
     public async Task<BasketLine> AddToBasket(Guid basketId, BasketLineForCreation basketLine)
@@ -28,13 +28,13 @@ public class InMemoryShoppingBasketService : IShoppingBasketService
             basket = new InMemoryBasket(settings.UserId);
             baskets.Add(basket.BasketId, basket);
         }
-        if (!eventsCache.TryGetValue(basketLine.EventId, out var @event))
+        if (!concertsCache.TryGetValue(basketLine.ConcertId, out var concert))
         {
-            @event = await eventCatalogService.GetEvent(basketLine.EventId);
-            eventsCache.Add(basketLine.EventId, @event);
+            concert = await concertCatalogService.GetConcert(basketLine.ConcertId);
+            concertsCache.Add(basketLine.ConcertId, concert);
         }
 
-        return basket.Add(basketLine, @event);
+        return basket.Add(basketLine, concert);
     }
 
     public async Task<Basket> GetBasket(Guid basketId)

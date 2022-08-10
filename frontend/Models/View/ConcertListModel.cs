@@ -2,8 +2,8 @@
 
 namespace GloboTicket.Frontend.Models.View;
 
-public class EventListModel
+public class ConcertListModel
 {
-    public IEnumerable<Event> Events { get; set; } = new List<Event>();
+    public IEnumerable<Concert> Concerts { get; set; } = new List<Concert>();
     public int NumberOfItems { get; set; }
 }

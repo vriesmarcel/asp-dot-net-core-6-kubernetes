@@ -21,7 +21,7 @@ public class HttpOrderSubmissionService : IOrderSubmissionService
         var order = new OrderForCreation();
         order.Date = DateTimeOffset.Now;
         order.OrderId = Guid.NewGuid();
-        order.Lines = lines.Select(line => new OrderLine() { EventId = line.EventId, Price = line.Price, TicketCount = line.TicketAmount }).ToList();
+        order.Lines = lines.Select(line => new OrderLine() { ConcertId = line.ConcertId, Price = line.Price, TicketCount = line.TicketAmount }).ToList();
         order.CustomerDetails = new CustomerDetails()
         {
             Address = checkoutViewModel.Address,
