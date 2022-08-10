@@ -7,17 +7,17 @@ namespace GloboTicket.Frontend.Services;
 public class DaprStateStoreShoppingBasket : IShoppingBasketService
 {
     private readonly HttpClient httpClient;
-    private readonly IEventCatalogService eventCatalogService;
+    private readonly IConcertCatalogService concertCatalogService;
     private readonly Settings settings;
     private readonly ILogger<DaprStateStoreShoppingBasket> logger;
 
     public DaprStateStoreShoppingBasket(HttpClient httpClient,
-        IEventCatalogService eventCatalogService,
+        IConcertCatalogService concertCatalogService,
         Settings settings,
         ILogger<DaprStateStoreShoppingBasket> logger)
     {
         this.httpClient = httpClient;
-        this.eventCatalogService = eventCatalogService;
+        this.concertCatalogService = concertCatalogService;
         this.settings = settings;
         this.logger = logger;
     }
@@ -26,13 +26,13 @@ public class DaprStateStoreShoppingBasket : IShoppingBasketService
     {
         logger.LogInformation($"ADD TO BASKET {basketId}");
         var basket = await GetBasketFromStateStore(basketId);
-        var @event = await GetEventFromStateStore(basketLineForCreation.EventId);
+        var concert = await GetConcertFromStateStore(basketLineForCreation.ConcertId);
 
         var basketLine = new BasketLine()
         {
-            EventId = basketLineForCreation.EventId,
+            ConcertId = basketLineForCreation.ConcertId,
             TicketAmount = basketLineForCreation.TicketAmount,
-            Event = @event,
+            Concert = concert,
             BasketId = basket.BasketId,
             BasketLineId = Guid.NewGuid(),
             Price = basketLineForCreation.Price
@@ -93,11 +93,11 @@ public class DaprStateStoreShoppingBasket : IShoppingBasketService
         resp.EnsureSuccessStatusCode();
     }
 
-    private async Task SaveEventToStateStore(Event @event)
+    private async Task SaveConcertToStateStore(Concert concert)
     {
-        var key = $"event-{@event.EventId}";
-        logger.LogInformation($"Saving event to state store {key}");
-        await SaveToStateStore(key, @event);
+        var key = $"concert-{concert.ConcertId}";
+        logger.LogInformation($"Saving concert to state store {key}");
+        await SaveToStateStore(key, concert);
     }
 
     private async Task<T?> GetFromStateStore<T>(string key)
@@ -130,21 +130,21 @@ public class DaprStateStoreShoppingBasket : IShoppingBasketService
         return basket;
     }
 
-    private async Task<Event> GetEventFromStateStore(Guid eventId)
+    private async Task<Concert> GetConcertFromStateStore(Guid concertId)
     {
-        var key = $"event-{eventId}";
-        var @event = await GetFromStateStore<Event>(key);
+        var key = $"concert-{concertId}";
+        var concert = await GetFromStateStore<Concert>(key);
 
-        if (@event != null)
+        if (concert != null)
         {
-            logger.LogInformation("Using cached event");
+            logger.LogInformation("Using cached concert");
         }
         else
         {
-            @event = await eventCatalogService.GetEvent(eventId);
-            await SaveEventToStateStore(@event);
+            concert = await concertCatalogService.GetConcert(concertId);
+            await SaveConcertToStateStore(concert);
         }
-        return @event;
+        return concert;
     }
 
     public async Task ClearBasket(Guid basketId)
