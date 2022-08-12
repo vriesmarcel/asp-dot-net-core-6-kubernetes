@@ -1,4 +1,19 @@
-
+kind: Service
+apiVersion: v1
+metadata:
+  name: catalog
+  labels:
+    app: catalog
+spec:
+  selector:
+    app: catalog
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+    name: http
+  type: ClusterIP
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,15 +29,13 @@ spec:
     metadata:
       labels:
         app: catalog
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "catalog"
-        dapr.io/app-port: "80"
-        dapr.io/config: "appconfig"
     spec:
       containers:
       - name: catalog
-        image: local/globoticket-dapr-catalog:latest
+        image: catalog:latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
         ports:
         - containerPort: 80
         imagePullPolicy: Never
