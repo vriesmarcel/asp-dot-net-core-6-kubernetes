@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using GloboTicket.Catalog.Repositories;
+using GloboTicket.Catalog.Model;
 
 namespace GloboTicket.Catalog.Controllers;
 
