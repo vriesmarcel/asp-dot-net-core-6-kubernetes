@@ -1,36 +1,6 @@
 # GloboTicket Demo Application
 
-This application is intended to demonstrate the basics of using Dapr to build a microservices application. It is the demo project for the Pluralsight courses: Dapr 1 The Big Picture by Marcel de Vries (https://www.pluralsight.com/courses/dapr-1-big-picture) and Dapr 1 Fundamentals course, by Mark Heath (https://www.pluralsight.com/courses/dapr-1-fundamentals).
-
-This version of the code is using Dapr 1.7
-
-## Running the app locally
-The recommended way for running locally is to use self-hosted mode (option 1). I have also managed to get it running in Docker Compose, although that option has not been tested so much.
-
-### Option 1 - Running self-hosted from the command line
-
-**Prerequisites:** You need to have the [Dapr CLI installed](https://docs.dapr.io/getting-started/install-dapr-cli/), as well as Docker installed (e.g. Docker Desktop for Windows), and to have set up dapr in self-hosted mode with `dapr init`
-
-And in order to use the email sending feature, you'll want a local container running maildev, which you can start using: `docker run -p 1080:80 -p 1025:25 maildev/maildev`. If you need a dummy credit card number to place an order you can use `4242424242424242` or `5555555555554444`
-
-Open three terminal windows. In the `frontend` folder run `start-self-hosted.ps1`. Do the same in the `catalog` and `ordering` folders. The ports used are specified in the PowerShell start up scripts. The frontend app will be available at `http://localhost:5266/`. The catalog service will be at `http://localhost:5016/swagger/index.html`, and the ordering service at `http://localhost:5293/swagger/index.html`
-
-You can view Zipkin traces at http://localhost:9411/zipkin/?
-You can see the emails sent by the ordering service using maildev on: `http://localhost:1080/#/`
-
-### Option 2 - Running with Docker Compose
-
-In same folder as the `docker-compose.yml` file, run `docker-compose build` then `docker-compose up`. The frontend service will be at `https://localhost:5001`.
-
-Note: The Docker Compose version has its own components folder, as the relative path of the local secrets is different, and redis is not on localhost.
-You will be able to access Zipkin traces on: `http://localhost:9412/zipkin/`
-
-You can see the emails sent by the ordering service using maildev on: `http://localhost:1080/#/`
-
-### Option 3 - Running with Docker Compose in Visual Studio 2022
-Set the startup project to Docker Compose. If you've used option 1, make sure the other Docker Compose containers are removed or there will be a name conflict. The frontend service will be at `https://localhost:5001`.  The catalog service will be at `http://localhost:5003/swagger/index.html`, and the ordering service at `http://localhost:5004/swagger/index.html`.
-You will be able to access Zipkin traces on: `http://localhost:9412/zipkin/`
-
+This application is intended to demonstrate the basics of deploying an asp.net core application to kubernetes
 
 ## Architecture Overview
 

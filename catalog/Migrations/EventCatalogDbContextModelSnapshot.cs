@@ -61,7 +61,7 @@ namespace GloboTicket.Catalog.Migrations
                             Artist = "John Egbert",
                             Date = new DateTime(2023, 3, 15, 6, 48, 58, 835, DateTimeKind.Local).AddTicks(9742),
                             Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
-                            ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
+                            ImageUrl = "/img/banjo.jpg",
                             Name = "John Egbert Live",
                             Price = 65
                         },
@@ -71,7 +71,7 @@ namespace GloboTicket.Catalog.Migrations
                             Artist = "Michael Johnson",
                             Date = new DateTime(2023, 6, 15, 6, 48, 58, 835, DateTimeKind.Local).AddTicks(9806),
                             Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
-                            ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
+                            ImageUrl = "/img/michael.jpg",
                             Name = "The State of Affairs: Michael Live!",
                             Price = 85
                         },
@@ -81,7 +81,7 @@ namespace GloboTicket.Catalog.Migrations
                             Artist = "DJ 'The Mike'",
                             Date = new DateTime(2023, 1, 15, 6, 48, 58, 835, DateTimeKind.Local).AddTicks(9815),
                             Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
-                            ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
+                            ImageUrl = "/img/dj.jpg",
                             Name = "Clash of the DJs",
                             Price = 85
                         },
@@ -91,7 +91,7 @@ namespace GloboTicket.Catalog.Migrations
                             Artist = "Manuel Santinonisi",
                             Date = new DateTime(2023, 1, 15, 6, 48, 58, 835, DateTimeKind.Local).AddTicks(9849),
                             Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
-                            ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
+                            ImageUrl = "/img/guitar.jpg",
                             Name = "Spanish guitar hits with Manuel",
                             Price = 25
                         },
