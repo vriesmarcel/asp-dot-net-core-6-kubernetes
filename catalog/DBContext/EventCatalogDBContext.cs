@@ -25,7 +25,7 @@ namespace GloboTicket.Services.EventCatalog.DbContexts
                 Artist = "John Egbert",
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg"
+                ImageUrl = "/img/banjo.jpg"
             });
 
             modelBuilder.Entity<Concert>().HasData(new Concert
@@ -36,7 +36,7 @@ namespace GloboTicket.Services.EventCatalog.DbContexts
                 Artist = "Michael Johnson",
                 Date = DateTime.Now.AddMonths(9),
                 Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg"
+                ImageUrl = "/img/michael.jpg"
             });
 
             modelBuilder.Entity<Concert>().HasData(new Concert
@@ -47,7 +47,7 @@ namespace GloboTicket.Services.EventCatalog.DbContexts
                 Artist = "DJ 'The Mike'",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg"
+                ImageUrl = "/img/dj.jpg"
             });
 
             modelBuilder.Entity<Concert>().HasData(new Concert
@@ -58,7 +58,7 @@ namespace GloboTicket.Services.EventCatalog.DbContexts
                 Artist = "Manuel Santinonisi",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg"
+                ImageUrl = "/img/guitar.jpg"
             });
 
             modelBuilder.Entity<Concert>().HasData(new Concert
