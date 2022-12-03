@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<RootNamespace>GloboTicket.Ordering</RootNamespace>
 	<UserSecretsId>4dc882c7-a46d-4527-954f-91be7b09e46d</UserSecretsId>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
