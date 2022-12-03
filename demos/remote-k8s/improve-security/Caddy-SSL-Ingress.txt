@@ -1,0 +1,9 @@
+https://caddyserver.com/
+
+kubectl apply -f caddy-ingress.yaml
+
+-- change exposure of service frontend to clusterIP
+kubectl apply -f frontend.yaml
+
+-- add ingress rule
+kubectl apply -f ingress-caddy.yaml

@@ -46,6 +46,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Globoticket", "Globoticket"
 		demos\remote-k8s\sqlserver.yaml = demos\remote-k8s\sqlserver.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "improve-security", "improve-security", "{17A3F5D4-D72B-4853-A348-A0B6C888F47D}"
+	ProjectSection(SolutionItems) = preProject
+		demos\remote-k8s\improve-security\caddy-ingress.yaml = demos\remote-k8s\improve-security\caddy-ingress.yaml
+		demos\remote-k8s\improve-security\Caddy-SSL-Ingress.txt = demos\remote-k8s\improve-security\Caddy-SSL-Ingress.txt
+		demos\remote-k8s\improve-security\catalog.yaml = demos\remote-k8s\improve-security\catalog.yaml
+		demos\remote-k8s\improve-security\deploy-istio.txt = demos\remote-k8s\improve-security\deploy-istio.txt
+		demos\remote-k8s\improve-security\frontend.yaml = demos\remote-k8s\improve-security\frontend.yaml
+		demos\remote-k8s\improve-security\ingress-caddy.yml = demos\remote-k8s\improve-security\ingress-caddy.yml
+		demos\remote-k8s\improve-security\namespace.yaml = demos\remote-k8s\improve-security\namespace.yaml
+		demos\remote-k8s\improve-security\ordering.yaml = demos\remote-k8s\improve-security\ordering.yaml
+		demos\remote-k8s\improve-security\sqlserver.yaml = demos\remote-k8s\improve-security\sqlserver.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +90,7 @@ Global
 		{5ED268EC-2F53-476E-8892-3AC2C4D0D67D} = {3930433A-017E-47D6-AFFC-F102963940A7}
 		{5EB4D405-BA85-4F85-8D82-9473D0DE3D23} = {26E30656-0182-4EEF-B89E-281F23389C42}
 		{FBF010D3-591F-4682-BDD6-199A79E57381} = {5EB4D405-BA85-4F85-8D82-9473D0DE3D23}
+		{17A3F5D4-D72B-4853-A348-A0B6C888F47D} = {5EB4D405-BA85-4F85-8D82-9473D0DE3D23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9F232D3-5386-4E57-B49F-7AF54A4A8843}
