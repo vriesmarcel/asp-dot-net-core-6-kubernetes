@@ -3,7 +3,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: frontend
-  namespace: globoticket
   labels:
     app: frontend
 spec:
