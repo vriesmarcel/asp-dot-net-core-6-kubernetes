@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ordering
+  labels:
+    app: ordering
+spec:
+  selector:
+    app: ordering
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordering
+  labels:
+    app: ordering
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ordering
+  template:
+    metadata:
+      labels:
+        app: ordering
+    spec:
+      containers:
+      - name: ordering
+        image: ordering:dev
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
