@@ -33,6 +33,13 @@ spec:
       containers:
       - name: catalog
         image: psgloboticket.azurecr.io/catalog
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "750m"
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
