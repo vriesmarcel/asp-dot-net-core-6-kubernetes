@@ -1,0 +1,43 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sqlserver
+  labels:
+    app: sqlserver
+spec:
+  selector:
+    app: sqlserver
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433
+    name: http
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqlserver
+  labels:
+    app: sqlserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqlserver
+  template:
+    metadata:
+      labels:
+        app: sqlserver
+    spec:
+      containers:
+      - name: sqlserver
+        image: mcr.microsoft.com/mssql/server:latest
+        env:
+        - name: ACCEPT_EULA
+          value: "TRUE"
+        - name: MSSQL_SA_PASSWORD
+          value: P@ssW0rd!
+        ports:
+        - containerPort: 1433
+        imagePullPolicy: Always

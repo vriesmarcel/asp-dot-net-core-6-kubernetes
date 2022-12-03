@@ -38,6 +38,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remote-k8s", "remote-k8s", 
 		demos\remote-k8s\create-cluster.txt = demos\remote-k8s\create-cluster.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Globoticket", "Globoticket", "{FBF010D3-591F-4682-BDD6-199A79E57381}"
+	ProjectSection(SolutionItems) = preProject
+		demos\remote-k8s\catalog.yaml = demos\remote-k8s\catalog.yaml
+		demos\remote-k8s\frontend.yaml = demos\remote-k8s\frontend.yaml
+		demos\remote-k8s\ordering.yaml = demos\remote-k8s\ordering.yaml
+		demos\remote-k8s\sqlserver.yaml = demos\remote-k8s\sqlserver.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +76,7 @@ Global
 		{3930433A-017E-47D6-AFFC-F102963940A7} = {26E30656-0182-4EEF-B89E-281F23389C42}
 		{5ED268EC-2F53-476E-8892-3AC2C4D0D67D} = {3930433A-017E-47D6-AFFC-F102963940A7}
 		{5EB4D405-BA85-4F85-8D82-9473D0DE3D23} = {26E30656-0182-4EEF-B89E-281F23389C42}
+		{FBF010D3-591F-4682-BDD6-199A79E57381} = {5EB4D405-BA85-4F85-8D82-9473D0DE3D23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9F232D3-5386-4E57-B49F-7AF54A4A8843}
