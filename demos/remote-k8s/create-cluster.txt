@@ -1,0 +1,8 @@
+#create the resource group in Azure
+az group create --name ps-aks --location westeurope
+
+#Create the cluster, this can take a few minutes
+az aks create -n ps-demo -g ps-aks --node-osdisk-type Ephemeral --node-osdisk-size 30 --network-plugin azure --generate-ssh-keys
+
+#Get the credentials merged in your local .kube file that is used by e.g. kubectl
+az aks get-credentials -n ps-demo -g ps-aks
