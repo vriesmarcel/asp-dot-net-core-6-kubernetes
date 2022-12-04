@@ -49,6 +49,7 @@ select {
 
 body {
     font-family: opensans-regular;
+    background-color: palegreen;
 }
 
 html {

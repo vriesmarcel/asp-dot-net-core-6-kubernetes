@@ -1,0 +1,277 @@
+{
+  "id": "cebd1f88-4803-4c9a-bf00-ce1c363ef686",
+  "version": "2.0",
+  "name": "Globoticket",
+  "url": "https://globoticket.com",
+  "tests": [{
+    "id": "e47a3561-f7d5-45fe-8ec5-501d2d9ac9f6",
+    "name": "BuyTicket",
+    "commands": [{
+      "id": "5a0316ce-0e0c-4d57-8a91-77ac72d4372d",
+      "comment": "",
+      "command": "times",
+      "target": "10000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a3939d2f-e2a5-47c6-bf1a-72c392662ac0",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "40653158-3467-4010-8fb8-d3f50cbd1c47",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1062x678",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62b4ef6e-3da9-4e1b-8089-20b2c352b2d6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=PURCHASE DETAILS",
+      "targets": [
+        ["linkText=PURCHASE DETAILS", "linkText"],
+        ["css=tr:nth-child(1) .btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'PURCHASE DETAILS')]", "xpath:link"],
+        ["xpath=//a[@type='button']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/ConcertCatalog/Detail?concertId=adc42c09-08c1-4d2c-9f96-2d15bb1af299')]", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'PURCHASE DETAILS')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be94087c-6e44-4563-936c-8e84d4bacdd7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'PLACE ORDER')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6118f03e-e184-4588-a7e3-891c39116765",
+      "comment": "",
+      "command": "click",
+      "target": "id=z0__Quantity",
+      "targets": [
+        ["id=z0__Quantity", "id"],
+        ["name=TicketAmount", "name"],
+        ["css=#z0__Quantity", "css:finder"],
+        ["xpath=//select[@id='z0__Quantity']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "383693a1-a8ea-4daf-acd2-bc3410259c34",
+      "comment": "",
+      "command": "select",
+      "target": "id=z0__Quantity",
+      "targets": [],
+      "value": "label=3"
+    }, {
+      "id": "d255a1f3-6d95-4ace-8ab8-60c87cdd2067",
+      "comment": "",
+      "command": "click",
+      "target": "css=.filterButton",
+      "targets": [
+        ["css=.filterButton", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Update')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ae2b1b4-aaf2-406d-926a-cb7e48a5cfb3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=CHECKOUT",
+      "targets": [
+        ["linkText=CHECKOUT", "linkText"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//a[contains(text(),'CHECKOUT')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Checkout')]", "xpath:href"],
+        ["xpath=//main/a", "xpath:position"],
+        ["xpath=//a[contains(.,'CHECKOUT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efc77dc6-cbf4-4916-b71d-de8fdb89fa55",
+      "comment": "",
+      "command": "click",
+      "target": "id=Name",
+      "targets": [
+        ["id=Name", "id"],
+        ["name=Name", "name"],
+        ["css=#Name", "css:finder"],
+        ["xpath=//input[@id='Name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7d04ad9-de6e-4633-8383-44bae51d2e11",
+      "comment": "",
+      "command": "type",
+      "target": "id=Name",
+      "targets": [
+        ["id=Name", "id"],
+        ["name=Name", "name"],
+        ["css=#Name", "css:finder"],
+        ["xpath=//input[@id='Name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Marcel"
+    }, {
+      "id": "ebf6df3f-104a-4b7a-8ca2-38278a6bea67",
+      "comment": "",
+      "command": "type",
+      "target": "id=Email",
+      "targets": [
+        ["id=Email", "id"],
+        ["name=Email", "name"],
+        ["css=#Email", "css:finder"],
+        ["xpath=//input[@id='Email']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "m@m.com"
+    }, {
+      "id": "2d4a5a5d-5b36-45bf-be94-c91ffcbd92c1",
+      "comment": "",
+      "command": "click",
+      "target": "id=Address",
+      "targets": [
+        ["id=Address", "id"],
+        ["name=Address", "name"],
+        ["css=#Address", "css:finder"],
+        ["xpath=//input[@id='Address']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23cd9cb7-1683-4572-a438-68a8bdfa81b5",
+      "comment": "",
+      "command": "type",
+      "target": "id=Address",
+      "targets": [
+        ["id=Address", "id"],
+        ["name=Address", "name"],
+        ["css=#Address", "css:finder"],
+        ["xpath=//input[@id='Address']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "kerkhofweg 12"
+    }, {
+      "id": "4803c726-3ef5-4fbb-96e0-9a634b3afc0c",
+      "comment": "",
+      "command": "type",
+      "target": "id=Town",
+      "targets": [
+        ["id=Town", "id"],
+        ["name=Town", "name"],
+        ["css=#Town", "css:finder"],
+        ["xpath=//input[@id='Town']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "Warnsveld"
+    }, {
+      "id": "c976713e-0d88-422b-b4b3-784fe207af90",
+      "comment": "",
+      "command": "type",
+      "target": "id=PostalCode",
+      "targets": [
+        ["id=PostalCode", "id"],
+        ["name=PostalCode", "name"],
+        ["css=#PostalCode", "css:finder"],
+        ["xpath=//input[@id='PostalCode']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "7231RJ"
+    }, {
+      "id": "76e63ccd-bfac-478d-8568-9b7d8a23b13c",
+      "comment": "",
+      "command": "type",
+      "target": "id=CreditCard",
+      "targets": [
+        ["id=CreditCard", "id"],
+        ["name=CreditCard", "name"],
+        ["css=#CreditCard", "css:finder"],
+        ["xpath=//input[@id='CreditCard']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "4444333322221111"
+    }, {
+      "id": "69b78149-50be-41be-baf8-3457dfa82525",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=CreditCard",
+      "targets": [
+        ["id=CreditCard", "id"],
+        ["name=CreditCard", "name"],
+        ["css=#CreditCard", "css:finder"],
+        ["xpath=//input[@id='CreditCard']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "638383bf-2fb1-48af-8e79-01a5c454ae1f",
+      "comment": "",
+      "command": "click",
+      "target": "id=CreditCardDate",
+      "targets": [
+        ["id=CreditCardDate", "id"],
+        ["name=CreditCardDate", "name"],
+        ["css=#CreditCardDate", "css:finder"],
+        ["xpath=//input[@id='CreditCardDate']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f2c3a38-982b-468d-a6d0-70bee4e65953",
+      "comment": "",
+      "command": "type",
+      "target": "id=CreditCardDate",
+      "targets": [
+        ["id=CreditCardDate", "id"],
+        ["name=CreditCardDate", "name"],
+        ["css=#CreditCardDate", "css:finder"],
+        ["xpath=//input[@id='CreditCardDate']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "24/12/2023"
+    }, {
+      "id": "f74d6b64-b4e4-443c-b359-433cd98df68f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'SUBMIT ORDER')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8451356a-d25d-4cc3-94b0-8c9e1f79b0e8",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3317b218-eb9b-4507-bf15-062f827ae498",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e47a3561-f7d5-45fe-8ec5-501d2d9ac9f6"]
+  }],
+  "urls": ["https://globoticket.com/"],
+  "plugins": []
+}
