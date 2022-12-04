@@ -46,7 +46,12 @@ spec:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
         - name: CONNECTIONSTRINGS__DEFAULTCONNECTION
-          value: Server=sqlserver;Database=EventCatalogDb;User=sa;pwd=P@ssW0rd!;TrustServerCertificate=true;Persist Security Info=true;MultipleActiveResultSets=true
+          valueFrom: 
+            secretKeyRef: 
+              name: catalog-db
+              key: connectionstring
         ports:
         - containerPort: 80
         imagePullPolicy: Always
+      imagePullSecrets:
+        - name: acr-secret
