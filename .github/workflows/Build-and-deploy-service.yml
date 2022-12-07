@@ -1,0 +1,69 @@
+name: Build and deploy frontend
+
+on:
+  push:
+    branches: [ "actions" ]
+    paths:
+    - 'frontend/**'
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      imageRepository: 'frontend'
+      containerRegistry: 'psgloboticket.azurecr.io'
+      dockerfilePath: 'fronend/Dockerfile'
+      deploymentFile: 'frontend.yaml'
+      trivyVersion: 0.12.0
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v2 
+      with:
+        registry: ${{ env.containerRegistry }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_TOKEN }}
+    
+    - name: Build an image from Dockerfile
+      run: |
+        docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}/frontend
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: '${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}'
+        exit-code: '1'
+        ignore-unfixed: true
+        severity: 'MEDIUM,CRITICAL,HIGH'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif
+
+    - name: push image to ACR
+      run: |
+        docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+
+    - name: Replace tokens
+      uses: cschleiden/replace-tokens@v1.0
+      with:
+        files: ${{github.workspace}}/demos/remote-k8s/${{env.deploymentFile}}
+      env: 
+        Build.BuildId: ${{github.run_number}}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{secrets.KUBECONFIG}} 
+      id: setcontext
+    
+    - uses: Azure/k8s-deploy@v4
+      with:
+        manifests: |
+            ${{github.workspace}}/demos/remote-k8s/${{env.deploymentFile}}
