@@ -4,8 +4,8 @@ using GloboTicket.Frontend.Models.Api;
 using GloboTicket.Frontend.Models.View;
 using GloboTicket.Frontend.Services.ShoppingBasket;
 using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace GloboTicket.Frontend.Controllers;
 
@@ -44,7 +44,6 @@ public class ShoppingBasketController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AddLine(BasketLineForCreation basketLine)
     {
-        SendAppInsightsTelemetryAddLine(basketLine);
         var basketId = Request.Cookies.GetCurrentBasketId(settings);
         var newLine = await basketService.AddToBasket(basketId, basketLine);
         Response.Cookies.Append(settings.BasketIdCookieName, newLine.BasketId.ToString());
@@ -56,7 +55,6 @@ public class ShoppingBasketController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateLine(BasketLineForUpdate basketLineUpdate)
     {
-        SendAppInsightsTelemetryUpdateLine(basketLineUpdate);    
         var basketId = Request.Cookies.GetCurrentBasketId(settings);
         await basketService.UpdateLine(basketId, basketLineUpdate);
         return RedirectToAction("Index");
@@ -69,19 +67,4 @@ public class ShoppingBasketController : Controller
         return RedirectToAction("Index");
     }
 
-    private void SendAppInsightsTelemetryAddLine(BasketLineForCreation basketLine)
-    {
-        MetricTelemetry telemetry = new MetricTelemetry();
-        telemetry.Name = "Items in basket";
-        telemetry.Sum = basketLine.TicketAmount;
-        telemetryClient.TrackMetric(telemetry);
-    }
-
-    private void SendAppInsightsTelemetryUpdateLine(BasketLineForUpdate basketLine)
-    {
-        MetricTelemetry telemetry = new MetricTelemetry();
-        telemetry.Name = "Items in basket";
-        telemetry.Sum = basketLine.TicketAmount;
-        telemetryClient.TrackMetric(telemetry);
-    }
-}
+ }

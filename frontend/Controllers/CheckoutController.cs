@@ -4,9 +4,8 @@ using GloboTicket.Frontend.Models.View;
 using GloboTicket.Frontend.Services;
 using GloboTicket.Frontend.Services.Ordering;
 using GloboTicket.Frontend.Services.ShoppingBasket;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace GloboTicket.Frontend.Controllers;
 
@@ -16,17 +15,16 @@ public class CheckoutController : Controller
     private readonly IOrderSubmissionService orderSubmissionService;
     private readonly Settings settings;
     private readonly ILogger<CheckoutController> logger;
-    private readonly TelemetryClient telemetryClient;
+
 
     public CheckoutController(IShoppingBasketService shoppingBasketService,
-        IOrderSubmissionService orderSubmissionService,TelemetryClient telemetry,
+        IOrderSubmissionService orderSubmissionService,
         Settings settings, ILogger<CheckoutController> logger)
     {
         this.shoppingBasketService = shoppingBasketService;
         this.orderSubmissionService = orderSubmissionService;
         this.settings = settings;
         this.logger = logger;
-        this.telemetryClient = telemetry;
     }
 
     public IActionResult Index()
@@ -50,7 +48,6 @@ public class CheckoutController : Controller
             checkout.BasketId = currentBasketId;
 
             logger.LogInformation($"Received an order from {checkout.Name}");
-            SendAppInsightsTelemetryOrderPlaced();
 
             var orderId = await orderSubmissionService.SubmitOrder(checkout);
             await shoppingBasketService.ClearBasket(currentBasketId);
@@ -64,13 +61,7 @@ public class CheckoutController : Controller
 
 
     }
-    private void SendAppInsightsTelemetryOrderPlaced()
-    {
-        MetricTelemetry telemetry = new MetricTelemetry();
-        telemetry.Name = "Order Placed";
-        
-        telemetry.Sum = Random.Shared.Next(600);
-        telemetryClient.TrackMetric(telemetry);
-    }
+
+
 
 }
