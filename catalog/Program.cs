@@ -4,7 +4,7 @@ using GloboTicket.Services.EventCatalog.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Prometheus;
-// trigger build
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
