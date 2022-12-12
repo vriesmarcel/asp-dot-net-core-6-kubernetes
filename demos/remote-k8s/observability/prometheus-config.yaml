@@ -1,0 +1,53 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: globoticket-ordering
+  labels:
+    release: prometheus-operator
+    app: ordering
+spec:
+  endpoints:
+  - port: api
+    path: '/metrics'
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app: ordering
+      release: prometheus-operator
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: globoticket-frontend
+  labels:
+    release: prometheus-operator
+    app: frontend
+spec:
+  endpoints:
+  - port: website
+    path: '/metrics'
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app: frontend
+      release: prometheus-operator
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: globoticket-catalog
+  labels:
+    release: prometheus-operator
+    app: catalog
+spec:
+  endpoints:
+  - port: api2
+    path: '/metrics'
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app: catalog
+      release: prometheus-operator

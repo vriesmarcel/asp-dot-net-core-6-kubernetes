@@ -1,6 +1,7 @@
 ﻿using GloboTicket.Frontend.Models.Api;
 using GloboTicket.Frontend.Models.View;
 using GloboTicket.Frontend.Services.ShoppingBasket;
+using Prometheus;
 
 namespace GloboTicket.Frontend.Services.Ordering;
 
@@ -8,7 +9,8 @@ public class HttpOrderSubmissionService : IOrderSubmissionService
 {
     private readonly IShoppingBasketService shoppingBasketService;
     private readonly HttpClient orderingClient;
-
+    private static ICounter ticketsSold = null;
+ 
     public HttpOrderSubmissionService(IShoppingBasketService shoppingBasketService, HttpClient orderingClient)
     {
         this.shoppingBasketService = shoppingBasketService;
@@ -32,11 +34,23 @@ public class HttpOrderSubmissionService : IOrderSubmissionService
             Town = checkoutViewModel.Town,
             CreditCardExpiryDate = checkoutViewModel.CreditCardDate
         };
+        SendTelemetryOrderPlaced(lines.Sum(item => item.TicketAmount));
         // make a synchronous call to the ordering microservice
         var response = await orderingClient.PostAsJsonAsync("order", order);
         // can be a validation error - haven't implemented validation yet
         var s = await response.Content.ReadAsStringAsync();
         response.EnsureSuccessStatusCode();
         return order.OrderId;
+    }
+
+    private void SendTelemetryOrderPlaced(int numtickets)
+    {
+        if (ticketsSold == null)
+        {
+            ticketsSold =
+                Metrics.CreateCounter("globoticket_tickets_sold", "Number of tickets in shopping basket on checkout");
+        }
+
+        ticketsSold.Inc(Convert.ToDouble(numtickets));
     }
 }

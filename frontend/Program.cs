@@ -5,6 +5,8 @@ using GloboTicket.Frontend.Services.ShoppingBasket;
 using GloboTicket.Frontend.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
+using Prometheus;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,8 @@ builder.Services.AddHealthChecks()
    .AddCheck<SlowDependencyHealthCheck>("SlowDependencyDemo", tags: new string[] { "ready" })
    .AddProcessAllocatedMemoryHealthCheck(maximumMegabytesAllocated: 500);
 
-
+builder.Services.AddHttpClient(Options.DefaultName)
+    .UseHttpClientMetrics();
 
 builder.Services.AddSingleton<Settings>();
 builder.Services.AddApplicationInsightsTelemetry();
@@ -65,5 +68,11 @@ new HealthCheckOptions()
     Predicate = reg => true,
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.UseHttpMetrics();
+app.UseMetricServer();
+
+app.UseEndpoints(endpoints =>
+endpoints.MapMetrics());
 
 app.Run();
