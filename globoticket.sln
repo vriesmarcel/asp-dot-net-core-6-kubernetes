@@ -63,6 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "observability", "observabil
 	ProjectSection(SolutionItems) = preProject
 		demos\remote-k8s\observability\catalog.yaml = demos\remote-k8s\observability\catalog.yaml
 		demos\remote-k8s\observability\frontend.yaml = demos\remote-k8s\observability\frontend.yaml
+		demos\remote-k8s\observability\Globoticket.side = demos\remote-k8s\observability\Globoticket.side
 		demos\remote-k8s\observability\ordering.yaml = demos\remote-k8s\observability\ordering.yaml
 		demos\remote-k8s\observability\prometheus-config.yaml = demos\remote-k8s\observability\prometheus-config.yaml
 	EndProjectSection
