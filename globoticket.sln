@@ -56,6 +56,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "improve-security", "improve
 		demos\remote-k8s\improve-security\ingress-caddy.yml = demos\remote-k8s\improve-security\ingress-caddy.yml
 		demos\remote-k8s\improve-security\namespace.yaml = demos\remote-k8s\improve-security\namespace.yaml
 		demos\remote-k8s\improve-security\ordering.yaml = demos\remote-k8s\improve-security\ordering.yaml
+		demos\remote-k8s\improve-security\run-kube-bench.txt = demos\remote-k8s\improve-security\run-kube-bench.txt
 		demos\remote-k8s\improve-security\sqlserver.yaml = demos\remote-k8s\improve-security\sqlserver.yaml
 	EndProjectSection
 EndProject

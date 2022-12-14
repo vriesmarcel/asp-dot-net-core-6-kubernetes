@@ -1,0 +1,7 @@
+https://github.com/aquasecurity/kube-bench
+
+kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-aks.yaml
+
+kubectl get pods -A -l job-name=kube-bench
+
+kubectl logs <pod>
