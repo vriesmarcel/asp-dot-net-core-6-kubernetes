@@ -1,0 +1,31 @@
+add kyverno to cluster
+
+delete frontend 
+
+apply non root policy
+
+tweak container to run as non root
+docker file
+ENV ASPNETCORE_URLS http://+:8080
+EXPOSE 8080
+
+
+kubernetes file
+service:
+
+
+    targetPort: 80
+
+
+deployment: 
+
+
+      securityContext:
+         fsGroup: 2000
+         runAsNonRoot: true
+         runAsUser: 1000
+
+        - containerPort: 8080
+
+        securityContext:
+           allowPrivilegeEscalation: false

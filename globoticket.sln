@@ -60,6 +60,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "improve-security", "improve
 		demos\remote-k8s\improve-security\sqlserver.yaml = demos\remote-k8s\improve-security\sqlserver.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policies", "policies", "{17F3AF31-BC5B-4D86-9B2E-DDC26807700E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,7 @@ Global
 		{5EB4D405-BA85-4F85-8D82-9473D0DE3D23} = {26E30656-0182-4EEF-B89E-281F23389C42}
 		{FBF010D3-591F-4682-BDD6-199A79E57381} = {5EB4D405-BA85-4F85-8D82-9473D0DE3D23}
 		{17A3F5D4-D72B-4853-A348-A0B6C888F47D} = {5EB4D405-BA85-4F85-8D82-9473D0DE3D23}
+		{17F3AF31-BC5B-4D86-9B2E-DDC26807700E} = {17A3F5D4-D72B-4853-A348-A0B6C888F47D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9F232D3-5386-4E57-B49F-7AF54A4A8843}
