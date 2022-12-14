@@ -1,0 +1,109 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  branches:
+    include:
+    - deployment-automation
+  paths:
+    include:
+    - frontend/*
+    - azure-pipelines-frontend.yml
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'psgloboticket'
+  imageRepository: 'frontend'
+  containerRegistry: 'psgloboticket.azurecr.io'
+  dockerfilePath: 'frontend/Dockerfile'
+  tag: '$(Build.BuildId)'
+  deploymentFile: 'frontend.yaml'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build the container image
+      inputs:
+        command: build
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        buildContext: $(Build.SourcesDirectory)
+        tags: |
+          $(tag)
+
+    - script: |
+        sudo docker tag $(imageRepository):$(tag) $(containerRegistry)/$(imageRepository):$(tag)
+      displayName: 'Tag container image before push'
+      condition:     
+    - task: Docker@2
+      displayName: Login to ACR
+      inputs:
+        command: login
+        containerRegistry: $(dockerRegistryServiceConnection)
+    
+    - task: trivy@1
+      inputs:
+        docker: false 
+        image: $(containerRegistry)/$(imageRepository):$(tag)
+        
+    - task: Docker@2
+      displayName: Push the image to container registry
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)
+        tags: |
+          $(tag)
+    
+- stage: Deploy
+  displayName: Deploy to k8s
+  jobs:  
+  - job: Deploy
+    displayName: Deploy to k8s
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: replacetokens@3
+      inputs:
+        rootDirectory: '$(Build.SourcesDirectory)/demos/remote-k8s/deployment-automation/'
+        targetFiles: '$(deploymentFile)'
+        encoding: 'auto'
+        writeBOM: true
+        actionOnMissing: 'warn'
+        keepToken: false
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
+        useLegacyPattern: false
+        enableTelemetry: true
+    
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'MVPSponsorship'
+        azureResourceGroup: 'ps-aks'
+        kubernetesCluster: 'ps-demo'
+        namespace: 'globoticket'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: '$(Build.SourcesDirectory)/demos/remote-k8s/deployment-automation/$(deploymentFile)'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'MVPSponsorship'
+        azureContainerRegistry: 'psgloboticket.azurecr.io'
+  

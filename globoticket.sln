@@ -75,6 +75,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment-automation", "de
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzDo", "AzDo", "{732E5D1A-CD56-4AB3-8C99-73B5E8257541}"
+	ProjectSection(SolutionItems) = preProject
+		demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-catalog.yaml = demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-catalog.yaml
+		demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-frontend.yaml = demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-frontend.yaml
+		demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-ordering.yaml = demos\remote-k8s\deployment-automation\AzDo\azdo-pipeline-ordering.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{240BFC58-FE6C-4FCB-8C71-9F27875EE61E}"
 	ProjectSection(SolutionItems) = preProject
