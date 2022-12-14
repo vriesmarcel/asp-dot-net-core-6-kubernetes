@@ -77,6 +77,6 @@ jobs:
     
     - uses: Azure/k8s-deploy@v4
       with:
-        namespace: ${{env.namespace}}
+        namespace: 'globoticket'
         manifests: |
             ./${{env.deploymentFile}}
