@@ -61,6 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "improve-security", "improve
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policies", "policies", "{17F3AF31-BC5B-4D86-9B2E-DDC26807700E}"
+	ProjectSection(SolutionItems) = preProject
+		demos\remote-k8s\improve-security\policies\frontend.yaml = demos\remote-k8s\improve-security\policies\frontend.yaml
+		demos\remote-k8s\improve-security\policies\Install Kyverno.txt = demos\remote-k8s\improve-security\policies\Install Kyverno.txt
+		demos\remote-k8s\improve-security\policies\RunAsNonRoot.yaml = demos\remote-k8s\improve-security\policies\RunAsNonRoot.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
